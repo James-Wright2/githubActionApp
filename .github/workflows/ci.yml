@@ -14,9 +14,9 @@ jobs:
     - name: Run HTML check
       run: |
         echo "Checking HTML files"
-        ls *.html
+        ls *.cshtml
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: website
-        path: index.html
+        path: index.cshtml
