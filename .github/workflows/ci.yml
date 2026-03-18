@@ -3,6 +3,10 @@ name: Web App CI
 on:
   push:
     branches: [ master ]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -11,12 +15,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Run HTML check
-      run: |
-        echo "Checking HTML files"
-        ls githubActionApp/*.cshtml
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
+    - name: Configure Pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        name: website
-        path: index.cshtml
+        path: .
+    - name: Deploy To GitHub Pages 
+      uses: actions/deploy-pages@v4
